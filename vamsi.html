@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Info</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="weather-container">
+        <input type="text" id="city-input" placeholder="Enter your city">
+        <button onclick="vamsi()" id="generate-btn">Generate</button>
+        <div id="weather-info">
+            <p>Cloud Percentage: <span id="cloud_pct"></span></p>
+            <p>Temperature: <span id="temp"></span></p>
+            <p>Feels Like: <span id="feels_like"></span> </p>
+            <p>Humidity: <span id="humidity"></span> </p>
+            <p>Minimum Temperature: <span id="min_temp"></span></p>
+            <p>Maximum Temperature: <span id="max_temp"></span> </p>
+            <p>Wind Speed: <span id="wind_speed"></span></p>
+            <p>Wind Degrees: <span id="wind_degrees"></span></p>
+            <p>Sunrise: <span id="sunrise"></span></p>
+            <p>Sunset: <span id="sunset"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        const input = document.getElementById("city-input");
+        const btn = document.getElementById("generate-btn");
+        const cloud_pct = document.getElementById("cloud_pct");
+        const temp = document.getElementById("temp");
+        const feels_like = document.getElementById("feels_like");
+        const humidity = document.getElementById("humidity");
+        const min_temp = document.getElementById("min_temp");
+        const max_temp = document.getElementById("max_temp");
+        const wind_speed = document.getElementById("wind_speed");
+        const wind_degrees = document.getElementById("wind_degrees");
+        const sunrise = document.getElementById("sunrise");
+        const sunset = document.getElementById("sunset");
+
+        async function vamsi() {
+            try {
+                const inputvalue = input.value.toLowerCase();
+
+                const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${inputvalue}`;
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': 'a5ed3364admsh0c8f5cc85d7ee27p1ce373jsn32ee1f4309b6',
+                        'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+                    }
+                };
+                const response = await fetch(url, options);
+
+                if (!response.ok) {
+                    throw new Error("Error fetching data: " + response.statusText);
+                }
+
+                const data = await response.json();
+                console.log(data)
+
+                cloud_pct.textContent = data.cloud_pct;
+                temp.textContent = data.temp;
+                feels_like.textContent = data.feels_like;
+                humidity.textContent = data.humidity;
+                min_temp.textContent = data.min_temp;
+                max_temp.textContent = data.max_temp;
+                wind_speed.textContent = data.wind_speed;
+                wind_degrees.textContent = data.wind_degrees;
+                sunrise.textContent = new Date(data.sunrise * 1000).toLocaleTimeString();
+                sunset.textContent = new Date(data.sunset * 1000).toLocaleTimeString();
+
+            } catch (error) {
+                console.error("Error:", error);
+                alert("please enter valid city name")
+            }
+        }
+    </script>
+</body>
+</html>

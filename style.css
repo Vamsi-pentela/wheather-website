@@ -1,0 +1,56 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("https://images.pexels.com/photos/1107717/pexels-photo-1107717.jpeg?cs=srgb&dl=pexels-fotios-photos-1107717.jpg&fm=jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.weather-container {
+    text-align: center;
+    
+    padding: 20px;
+    border-radius: 10px;
+   
+}
+
+#city-input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#generate-btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: green;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#generate-btn:hover {
+    color: rgb(236, 122, 1);
+}
+
+#weather-info p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.weather-container P{
+    font-weight: bold;
+    color: rgb(255, 47, 0);
+    
+}
+.weather-container span{
+    font-weight: normal;
+    font-size: 15px;
+    color: rgb(255, 47, 0);
+}
